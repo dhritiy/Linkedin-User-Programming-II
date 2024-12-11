@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 import streamlit as st
 
-st.markdown("# Linkedin Predictor")
+st.markdown("# Linkedin Predictor <img src = 'https://similarpng.com/linkedin-logo-transparent-png/'>")
 st.markdown("### Predict whether someone is a Linkedin user and the probability of them using Linkedin based on their background:")
 
 def data_and_model():
