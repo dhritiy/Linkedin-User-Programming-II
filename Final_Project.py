@@ -6,6 +6,14 @@ import streamlit as st
 
 st.image("images/linkedin_logo.png", width = 40)
 st.markdown("# Linkedin Predictor")
+
+st.markdown("""
+    <div style='display: flex; align-items: center; gap: 10px'>
+        <h1>Linkedin Predictor</h1>
+        <img src='images/linkedin_logo.png' height='50'>
+    </div>
+""")
+
 st.markdown("### Predict whether someone is a Linkedin user and the probability of them using Linkedin based on their background:")
 
 
