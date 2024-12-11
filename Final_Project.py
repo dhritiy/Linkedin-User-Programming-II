@@ -4,10 +4,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 import streamlit as st
 
-st.markdown("# Linkedin Predictor <img src = 'https://similarpng.com/linkedin-logo-transparent-png' width = '50'/>")
+st.image("images/linkedin_logo.png", width = 40)
+st.markdown("# Linkedin Predictor")
 st.markdown("### Predict whether someone is a Linkedin user and the probability of them using Linkedin based on their background:")
 
-# Rest of your code remains the same...
+
 def data_and_model():
     s = pd.read_csv("social_media_usage.csv")
 
@@ -91,9 +92,8 @@ married = 1 if married == 'Married' else 0
 
 
 
-# Create prediction button with better styling
-if st.button('Predict LinkedIn Usage', use_container_width=True):
-    # Create input data frame
+
+if st.button('Predict LinkedIn Usage', use_container_width = True):
     input_data = pd.DataFrame({
         'income': [income],
         'education': [education],
