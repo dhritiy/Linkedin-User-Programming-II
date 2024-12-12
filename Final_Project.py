@@ -127,7 +127,6 @@ if st.button(label = 'Predict LinkedIn Usage', type = 'primary', use_container_w
             st.error('Not a LinkedIn User')
     
     with res_col2:
-        st.markdown("<p style = 'font-size: 24px; margin-bottom: -40px'> Prediction Results </p>", unsafe_allow_html = True)
         st.metric(
             label = ' ',
             value =f"{prob:.2%}"
