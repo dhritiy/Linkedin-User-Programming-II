@@ -128,7 +128,7 @@ if st.button(label = 'Predict LinkedIn Usage', type = 'primary', use_container_w
     
     with res_col2:
         st.metric(
-            label = ' ',
+            label = 'Probability:',
             value =f"{prob:.2%}"
         )
     
