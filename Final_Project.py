@@ -4,16 +4,15 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 import streamlit as st
 
-title_col, logo_col = st.columns([6, 1])
+logo_col, title_col = st.columns([1, 4])
 
 with title_col:
-    st.markdown("# LinkedIn Predictor")
+    st.markdown("# Linkedin Predictor")
 
 with logo_col:
-    st.image("images/linkedin_logo.png", width =40)
+    st.image("images/linkedin_logo.png", width = 90)
 
 st.markdown("### Predict whether someone is a Linkedin user and the probability of them using Linkedin based on their background:")
-
 
 def data_and_model():
     s = pd.read_csv("social_media_usage.csv")
@@ -36,11 +35,7 @@ def data_and_model():
     y = ss['sm_li']
     X = ss[['income', 'education', 'parent', 'married', 'female', 'age']]
 
-    X_train, X_test, y_train, y_test = train_test_split(X, 
-                                                        y,
-                                                        stratify = y,  
-                                                        test_size = 0.2, 
-                                                        random_state = 58) 
+    X_train, X_test, y_train, y_test = train_test_split(X, y, stratify = y, test_size = 0.2, random_state = 58) 
 
     lr = LogisticRegression(class_weight = 'balanced')
 
@@ -49,11 +44,12 @@ def data_and_model():
     return ss, lr
 
 ss, lr = data_and_model()
-    
-age = st.number_input('Age', min_value = 18, max_value = 98, value = 30,
-                    help='Select age between 18 and 98')
-    
-income = st.select_slider('Household Income', 
+
+st.markdown("<p style = 'font-size: 24px; margin-bottom: -30px'> Age </p>", unsafe_allow_html = True)
+age = st.number_input(label = ' ', min_value = 18, max_value = 98, value = 45)
+
+st.markdown("<p style = 'font-size: 24px; margin-bottom: -30px'> Household Income </p>", unsafe_allow_html = True)
+income = st.select_slider(label = ' ', 
                             options = list(range(1, 10)),
                             value = 5,
                             format_func = lambda x: {
@@ -68,10 +64,10 @@ income = st.select_slider('Household Income',
                                 9: "$150,000 or more"
                             }[x])
 
-    
-education = st.select_slider('Education Level',
+st.markdown("<p style = 'font-size: 24px; margin-bottom: -30px'> Education Level </p>", unsafe_allow_html = True)
+education = st.select_slider(label = ' ',
                                options = list(range(1, 9)),
-                               value = 4,
+                               value = 5,
                                format_func = lambda x: {
                                    1: "Less than high school",
                                    2: "High school incomplete",
@@ -83,23 +79,30 @@ education = st.select_slider('Education Level',
                                    8: "Postgraduate/Professional degree"
                                }[x])
 
-female = st.radio('Gender', ['Male', 'Female'], index = 0,
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("<p style = 'font-size: 24px; margin-bottom: -40px'> Gender </p>", unsafe_allow_html = True)      
+    female = st.radio(label = ' ', options = ['Male', 'Female'], index = 0,
                      horizontal = True)
-female = 1 if female == 'Female' else 0
+    female = 1 if female == 'Female' else 0
 
-parent = st.radio('Parent Status', ['Not a Parent', 'Parent'], 
-                     index = 0, horizontal=True)
-parent = 1 if parent == 'Parent' else 0
+with col2:
+    st.markdown("<p style = 'font-size: 24px; margin-bottom: -40px'> Parent Status </p>", unsafe_allow_html = True)
+    parent = st.radio(label = ' ', options = ['Not a Parent', 'Parent'], 
+                     index = 0, horizontal = True)
+    parent = 1 if parent == 'Parent' else 0
 
-
-married = st.radio('Marital Status', ['Not Married', 'Married'], 
-                      index =0, horizontal=True)
+with col3:
+    st.markdown("<p style = 'font-size: 24px; margin-bottom: -40px'> Marital Status </p>", unsafe_allow_html = True)
+    married = st.radio(label = ' ', options = ['Not Married', 'Married'], 
+                      index = 0, horizontal =True)
 married = 1 if married == 'Married' else 0
 
 
 
 
-if st.button('Predict LinkedIn Usage', use_container_width = True):
+if st.button(label = 'Predict LinkedIn Usage', type = 'primary', use_container_width = True):
     input_data = pd.DataFrame({
         'income': [income],
         'education': [education],
@@ -124,9 +127,10 @@ if st.button('Predict LinkedIn Usage', use_container_width = True):
             st.error('Not a LinkedIn User')
     
     with res_col2:
+        st.markdown("<p style = 'font-size: 24px; margin-bottom: -40px'> Prediction Results </p>", unsafe_allow_html = True)
         st.metric(
-            label="Probability",
-            value=f"{prob:.1%}"
+            label = ' ',
+            value =f"{prob:.2%}"
         )
     
 
