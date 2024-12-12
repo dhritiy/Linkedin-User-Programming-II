@@ -4,12 +4,13 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 import streamlit as st
 
-st.markdown("""
-    <div style='display: flex; align-items: center; gap: 10px'>
-        <h1>Linkedin Predictor</h1>
-        <img src='images/linkedin_logo.png' height='50'>
-    </div>
-""")
+title_col, logo_col = st.columns([6, 1])
+
+with title_col:
+    st.markdown("# LinkedIn Predictor")
+
+with logo_col:
+    st.image("images/linkedin_logo.png", width =40)
 
 st.markdown("### Predict whether someone is a Linkedin user and the probability of them using Linkedin based on their background:")
 
