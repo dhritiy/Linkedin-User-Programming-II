@@ -125,7 +125,7 @@ if st.button(label = 'Predict LinkedIn Usage', type = 'primary', use_container_w
             if pred == 1:
                 st.success('LinkedIn User')
             else:
-            st.error('Not a LinkedIn User')
+                st.error('Not a LinkedIn User')
     
         with res_col2:
             st.metric(label = ' ', value = f"{prob:.2%}")
