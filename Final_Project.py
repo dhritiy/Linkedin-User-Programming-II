@@ -113,22 +113,22 @@ if st.button(label = 'Predict LinkedIn Usage', type = 'primary', use_container_w
     })
     
 
-pred = lr.predict(input_data)[0]
-prob = lr.predict_proba(input_data)[0][1]
+    pred = lr.predict(input_data)[0]
+    prob = lr.predict_proba(input_data)[0][1]
     
-st.subheader('Prediction Results')
+    st.subheader('Prediction Results')
     
 
-res_col1, res_col2 = st.columns(2)
+    res_col1, res_col2 = st.columns(2)
         
-with res_col1:
-    if pred == 1:
-        st.success('LinkedIn User')
-    else:
-        st.error('Not a LinkedIn User')
+    with res_col1:
+        if pred == 1:
+            st.success('LinkedIn User')
+        else:
+            st.error('Not a LinkedIn User')
     
-with res_col2:
-    st.metric(label = 'Probability:', value = f"{prob:.2%}")
+    with res_col2:
+        st.metric(label = 'Probability:', value = f"{prob:.2%}")
     
 
 
